@@ -20,7 +20,6 @@ class CreateAdsTable extends Migration
             $table->longText('description');
             $table->string('author_name');
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

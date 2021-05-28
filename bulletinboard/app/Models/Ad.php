@@ -15,9 +15,4 @@ class Ad extends Model
         'author_name',
         'user_id',
     ];
-
-    public function user()
-    {
-        $this->hasOne('users');
-    }
 }

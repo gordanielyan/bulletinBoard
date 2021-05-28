@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AdRequest;
 use App\Models\Ad;
-use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,7 +11,7 @@ class AdController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['index', 'show']);
+//        $this->middleware('auth', ['create', 'edit', 'update', 'destroy']);
     }
 
     public function index()
@@ -57,7 +56,7 @@ class AdController extends Controller
     public function update(AdRequest $request, $id)
     {
         $request->validated();
-        $ad = Ad::where('id', $id)
+        Ad::where('id', $id)
             ->update([
                 'title' => $request->input('title'),
                 'description' => $request->input('description'),

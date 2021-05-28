@@ -70,7 +70,7 @@
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
-                                <a class="dropdown-item" href="/edit">Add new ad</a>
+                                <a class="dropdown-item" href="/edit">Create new ad</a>
                             </div>
                         </li>
                     @endguest

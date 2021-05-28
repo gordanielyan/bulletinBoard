@@ -21,7 +21,7 @@ Auth::routes();
 
 
 //Route::resource('/', \App\Http\Controllers\BulletinController::class);
-Route::get('/', [\App\Http\Controllers\AdController::class, 'index']);
+Route::get('/', [\App\Http\Controllers\AdController::class, 'index'])->name('home');
 Route::post('/', [\App\Http\Controllers\AdController::class, 'store']);
 Route::get('/edit', [\App\Http\Controllers\AdController::class, 'create']);
 Route::put('/{id}', [\App\Http\Controllers\AdController::class, 'update']);
