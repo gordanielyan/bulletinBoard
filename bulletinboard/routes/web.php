@@ -28,3 +28,5 @@ Route::put('/{id}', [\App\Http\Controllers\AdController::class, 'update']);
 Route::get('/{id}', [\App\Http\Controllers\AdController::class, 'show']);
 Route::delete('/delete/{id}', [\App\Http\Controllers\AdController::class, 'destroy']);
 Route::get('/edit/{id}', [\App\Http\Controllers\AdController::class, 'edit']);
+
+Route::post('/auth', [\App\Http\Controllers\AuthController::class, 'loginOrReg'])->name('tryAuth');

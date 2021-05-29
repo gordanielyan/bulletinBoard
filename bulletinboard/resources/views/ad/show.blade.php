@@ -13,7 +13,7 @@
                                     <a class="btn btn-success btn-sm" title="Edit" href="/edit/{{$ad->id}}"><i
                                             class="fa fa-edit"></i></a>
 
-                                    <form action="/{{ $ad->id }}" method="POST">
+                                    <form action="delete/{{ $ad->id }}" method="POST">
                                         @csrf
                                         @method('delete')
                                         <button
@@ -30,7 +30,9 @@
                         {{ __($ad->description) }}
                     </div>
                     <div class="card-footer">
-                        Created by: {{$ad->author_name . ' at ' . $ad->created_at}}
+                        Author name: {{ $ad->users->name }}
+                        <br>
+                        Creation date: {{ $ad->created_at }}
                     </div>
                 </div>
             </div>

@@ -12,7 +12,9 @@ class Ad extends Model
     protected $fillable = [
         'title',
         'description',
-        'author_name',
         'user_id',
     ];
+    public function users(){
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

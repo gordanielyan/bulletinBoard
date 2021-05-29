@@ -23,12 +23,17 @@ class AdController extends Controller
 
     public function create()
     {
-        $user_name = Auth::user()->name;
-        return view('ad.create')->with('user_name', $user_name);
+        if (!Auth::check()) {
+            abort(403);
+        }
+        return view('ad.create')->with('user_name');
     }
 
     public function store(AdRequest $request)
     {
+        if (!Auth::check()) {
+            abort(403);
+        }
         $request->validated();
 
         $ad = Ad::create([
@@ -49,12 +54,17 @@ class AdController extends Controller
     public function edit($id)
     {
         $ad = Ad::find($id);
-
+        if (!Auth::check() || Auth::id() !== $ad->user_id) {
+            abort(403);
+        }
         return view('ad.edit')->with('ad', $ad);
     }
 
     public function update(AdRequest $request, $id)
     {
+        if (!Auth::check() || Auth::id() !== Ad::find($id)->user_id) {
+            abort(403);
+        }
         $request->validated();
         Ad::where('id', $id)
             ->update([
@@ -67,8 +77,11 @@ class AdController extends Controller
 
     public function destroy($id)
     {
-        Ad::find($id)->delete();
-
+        $ad = Ad::find($id);
+        if (!Auth::check() || Auth::id() !== $ad->user_id) {
+            abort(403);
+        }
+        $ad->delete();
         return redirect('/');
     }
 }

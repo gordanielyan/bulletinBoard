@@ -40,16 +40,6 @@
                                 </div>
                             </div>
 
-
-                            <div class="form-group row">
-                                <label for="author_name"
-                                       class="col-md-4 col-form-label text-md-right">Author name</label>
-
-                                <div class="col-md-6">
-                                    <input id="author_name" type="text" class="form-control" name="author_name"
-                                           value="{{ $ad->author_name }}">
-                                </div>
-                            </div>
                             <div class="form-group row mb-0">
                                 <div class="col-md-8 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
