@@ -9,10 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class AdController extends Controller
 {
-    public function __construct()
-    {
-//        $this->middleware('auth', ['create', 'edit', 'update', 'destroy']);
-    }
 
     public function index()
     {
@@ -48,21 +44,27 @@ class AdController extends Controller
     public function show($id)
     {
         $ad = Ad::find($id);
+        if (!$ad)
+            abort(404);
         return view('ad.show')->with('ad', $ad);
     }
 
     public function edit($id)
     {
         $ad = Ad::find($id);
-        if (!Auth::check() || Auth::id() !== $ad->user_id) {
+        if (!$ad)
+            abort(404);
+        if (!Auth::check() || Auth::id() !== $ad->user_id)
             abort(403);
-        }
         return view('ad.edit')->with('ad', $ad);
     }
 
     public function update(AdRequest $request, $id)
     {
-        if (!Auth::check() || Auth::id() !== Ad::find($id)->user_id) {
+        $ad = Ad::find($id);
+        if (!$ad)
+            abort(404);
+        if (!Auth::check() || Auth::id() !== $ad->user_id) {
             abort(403);
         }
         $request->validated();
@@ -78,6 +80,8 @@ class AdController extends Controller
     public function destroy($id)
     {
         $ad = Ad::find($id);
+        if (!$ad)
+            abort(404);
         if (!Auth::check() || Auth::id() !== $ad->user_id) {
             abort(403);
         }
